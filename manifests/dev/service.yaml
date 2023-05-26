@@ -4,7 +4,7 @@ metadata:
   labels:
     name: saemea-app
   name: saemea-app-svc
-  namespace: dev
+  namespace: tosino
 spec:
   type: LoadBalancer
   selector:
