@@ -155,7 +155,7 @@ jobs:
           kubectl apply -f -
           kubectl apply -f ./manifests/dev/service.yaml
       
-      #### TESTING ############
+      #### TESTING ###########
       #- name: Deploying to Dev
       #  uses: Azure/k8s-artifact-substitute@v1
       #  with:
