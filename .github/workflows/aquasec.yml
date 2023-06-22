@@ -1,4 +1,4 @@
-name: SAEMEA APP 
+name: TosinO APP 
 on:
   push:
     branches:
@@ -10,7 +10,7 @@ on:
       
 env:
    DOCKER_REPOSITORY: tosino10 # name of Docker Hub ID
-   IMAGE_NAME: saemea-app
+   IMAGE_NAME: tosino-app
    IMAGE_TAG: ${{ github.run_number }} # $GITHUB_RUN_NUMBER
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      - name: Setup pipeline enforcer
+      - name: Integrity Pipeline
         uses: aquasecurity/pipeline-enforcer-action@main
         with:
           aqua-key: ${{ secrets.AQUA_KEY }}
@@ -30,7 +30,7 @@ jobs:
       - name: Aqua code scanning(SCA,IaC and SAST)
         uses: docker://aquasec/aqua-scanner
         with:
-          args: trivy fs --security-checks config,vuln,secret --sast .
+          args: trivy fs --scanners config,vuln,secret --sast --reachability .
           # To customize which severities to scan for, add the following flag: --severity UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
           # To enable SAST scanning, add: --sast
           # To enable npm/dotnet non-lock file scanning, add: --package-json / --dotnet-proj
@@ -49,7 +49,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      - name: Setup pipeline enforcer
+      - name: Integrity Pipeline
         uses: aquasecurity/pipeline-enforcer-action@main
         with:
           aqua-key: ${{ secrets.AQUA_KEY }}
@@ -88,12 +88,6 @@ jobs:
         run: |
           docker run --rm -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:2022.4 scan --register --registry "CI/CD_andres_images" --host ${{ secrets.AQUA_HOST }} --local $DOCKER_REPOSITORY/$IMAGE_NAME:$IMAGE_TAG --token ${{ secrets.AQUA_TOKEN }} --layer-vulnerabilities --no-verify --html > .github/workflows/scan-output.html
       # -e BUILD_JOB_NAME=$CI_JOB_NAME -e BUILD_URL=$CI_JOB_URL -e BUILD_NUMBER=$CI_JOB_ID
-        
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
           
       - name: Docker Login & Push
         run: |
@@ -135,7 +129,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         
-      - name: Setup pipeline enforcer
+      - name: Integrity Pipeline
         uses: aquasecurity/pipeline-enforcer-action@main
         with:
           aqua-key: ${{ secrets.AQUA_KEY }}
@@ -198,7 +192,7 @@ jobs:
      - name: Checkout code
        uses: actions/checkout@v2
        
-     - name: Setup pipeline enforcer
+     - name: Integrity Pipeline
        uses: aquasecurity/pipeline-enforcer-action@main
        with:
           aqua-key: ${{ secrets.AQUA_KEY }}
