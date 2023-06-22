@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: saemea-app
+  name: tosino-app
   namespace: tosino
   labels:
-    app: saemea-app
+    app: tosino-app
     env: tosino
 spec:
   selector:
     matchLabels:
-      app: saemea-app
+      app: tosino-app
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -19,10 +19,10 @@ spec:
   template:
     metadata:
       labels:
-        app: saemea-app
+        app: tosino-app
     spec:
       containers:
-      - name: saemea-app
+      - name: tosino-app
         image: {{ IMAGE_CONTAINER }}
         imagePullPolicy: Always
         ports:
