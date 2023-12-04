@@ -1,4 +1,4 @@
-name: TosinO APP 
+name: Tosino10 APP 
 on:
   push:
     branches:
@@ -10,7 +10,7 @@ on:
       
 env:
    DOCKER_REPOSITORY: tosino10 # name of Docker Hub ID
-   IMAGE_NAME: tosino-app
+   IMAGE_NAME: tosino10-app
    IMAGE_TAG: ${{ github.run_number }} # $GITHUB_RUN_NUMBER
 
 jobs:
