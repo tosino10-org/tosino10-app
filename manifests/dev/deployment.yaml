@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tosino-app
+  name: tosino10-app
   namespace: tosino
   labels:
-    app: tosino-app
+    app: tosino10-app
     env: tosino
 spec:
   selector:
     matchLabels:
-      app: tosino-app
+      app: tosino10-app
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -19,10 +19,10 @@ spec:
   template:
     metadata:
       labels:
-        app: tosino-app
+        app: tosino10-app
     spec:
       containers:
-      - name: tosino-app
+      - name: tosino10-app
         image: {{ IMAGE_CONTAINER }}
         imagePullPolicy: Always
         ports:
