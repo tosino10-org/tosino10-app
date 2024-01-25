@@ -42,7 +42,7 @@ jobs:
           
   CI-Build:
     needs: CI-Code
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
       
     steps:   
    
@@ -123,7 +123,7 @@ jobs:
   CD-Deploy_to_dev:
     #if: github.ref == 'refs/heads/development'
     needs: CI-Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     
     steps: 
     
@@ -186,7 +186,7 @@ jobs:
   CD-Deploy_to_stagging:
     #if: github.ref == 'refs/heads/stagging'
     needs: CD-Deploy_to_dev
-    runs-on: ubuntu-20.04      
+    runs-on: ubuntu-22.04      
     
     steps:   
     
