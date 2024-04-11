@@ -181,7 +181,7 @@ jobs:
      #     method: service-account
      #     k8s-url: https://emea-aguisado-test-dns-f0e6f17b.hcp.westeurope.azmk8s.io:443
      #     k8s-secret: ${{ secrets.KUBERNETES_SECRET }}
-     ##########################
+     #########################
             
   CD-Deploy_to_stagging:
     #if: github.ref == 'refs/heads/stagging'
